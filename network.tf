@@ -5,7 +5,7 @@ module "vpc" {
   name = local.name
   cidr = local.vpc_cidr
 
-  azs  = local.azs
+  azs             = local.azs
   public_subnets  = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k)]
   private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 10)]
 
@@ -20,7 +20,7 @@ module "vpc" {
   manage_default_route_table    = true
   default_route_table_tags      = { Name = "${local.name}-default" }
   manage_default_security_group = true
-  default_security_group_tags   = { Name = "${local.name}-default" }  
+  default_security_group_tags   = { Name = "${local.name}-default" }
 
   public_subnet_tags = {
     "kubernetes.io/cluster/${local.name}" = "shared"
