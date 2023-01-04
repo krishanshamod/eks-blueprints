@@ -21,7 +21,7 @@ provider "kubectl" {
 }
 
 module "eks_blueprints" {
-  source = "github.com/aws-ia/terraform-aws-eks-blueprints?ref=v4.12.2"
+  source = "github.com/aws-ia/terraform-aws-eks-blueprints?ref=v4.20.0"
 
   cluster_name = local.name
 
@@ -38,52 +38,57 @@ module "eks_blueprints" {
       node_group_name = local.node_group_name
       instance_types  = ["t3.micro"]
       subnet_ids      = module.vpc.private_subnets
+
+      # Scaling Config
+      desired_size = 1
+      max_size     = 3
+      min_size     = 1
     }
   }
 
   # List of Additional roles in the cluster
-  map_roles = [
-    {
-      rolearn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/TeamRole"
-      username = "ops-role"
-      groups   = ["system:masters"]
-    }
-  ]
+  # map_roles = [
+  #   {
+  #     rolearn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/TeamRole"
+  #     username = "ops-role"
+  #     groups   = ["system:masters"]
+  #   }
+  # ]
 
   # List of Additional users in the cluster
-  platform_teams = {
-    admin = {
-      users = [
-        data.aws_caller_identity.current.arn
-      ]
-    }
-  }
+  # platform_teams = {
+  #   admin = {
+  #     users = [
+  #       data.aws_caller_identity.current.arn
+  #     ]
+  #   }
+  # }
 
   # List of Additional users in the cluster
-  application_teams = {
-    team-ksp = {
+  # application_teams = {
+  #   team-ksp = {
 
-      #   "labels" = {
-      #     "appName"     = "ksp-team-app",
-      #     "projectName" = "project-ksp",
-      #     "environment" = "prod",
-      #   }
+  #     #   "labels" = {
+  #     #     "appName"     = "ksp-team-app",
+  #     #     "projectName" = "project-ksp",
+  #     #     "environment" = "prod",
+  #     #   }
 
-      #   "quota" = {
-      #     "requests.cpu"    = "10000m",
-      #     "requests.memory" = "20Gi",
-      #     "limits.cpu"      = "20000m",
-      #     "limits.memory"   = "50Gi",
-      #     "pods"            = "15",
-      #     "secrets"         = "10",
-      #     "services"        = "10"
-      #   }
+  #     #   "quota" = {
+  #     #     "requests.cpu"    = "10000m",
+  #     #     "requests.memory" = "20Gi",
+  #     #     "limits.cpu"      = "20000m",
+  #     #     "limits.memory"   = "50Gi",
+  #     #     "pods"            = "15",
+  #     #     "secrets"         = "10",
+  #     #     "services"        = "10"
+  #     #   }
 
-      #   # Manifests that can be automatically applied in the team-riker namespace.
-      #   manifests_dir = "./kubernetes/team-ksp"
+  #     #   # Manifests that can be automatically applied in the team-riker namespace.
+  #     #   manifests_dir = "./kubernetes/team-ksp"
 
-      users = [data.aws_caller_identity.current.arn]
-    }
-  }
+  #     users = [data.aws_caller_identity.current.arn]
+  #   }
+  # }
 
 }
