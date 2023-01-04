@@ -37,3 +37,17 @@ resource "kubernetes_cluster_role_binding" "developer" {
     kubernetes_cluster_role.developer
   ]
 }
+
+# AWS Auth ConfigMap
+resource "kubernetes_config_map_v1_data" "aws_auth" {
+  metadata {
+    name      = "aws-auth"
+    namespace = "kube-system"
+  }
+
+  data = {
+    "mapUsers" = yamlencode(var.aws_auth_map_users)
+  }
+
+  force = true
+}

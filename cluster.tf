@@ -46,49 +46,4 @@ module "eks_blueprints" {
     }
   }
 
-  # List of Additional roles in the cluster
-  # map_roles = [
-  #   {
-  #     rolearn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/TeamRole"
-  #     username = "ops-role"
-  #     groups   = ["system:masters"]
-  #   }
-  # ]
-
-  # List of Additional users in the cluster
-  # platform_teams = {
-  #   admin = {
-  #     users = [
-  #       data.aws_caller_identity.current.arn
-  #     ]
-  #   }
-  # }
-
-  # List of Additional users in the cluster
-  # application_teams = {
-  #   team-ksp = {
-
-  #     #   "labels" = {
-  #     #     "appName"     = "ksp-team-app",
-  #     #     "projectName" = "project-ksp",
-  #     #     "environment" = "prod",
-  #     #   }
-
-  #     #   "quota" = {
-  #     #     "requests.cpu"    = "10000m",
-  #     #     "requests.memory" = "20Gi",
-  #     #     "limits.cpu"      = "20000m",
-  #     #     "limits.memory"   = "50Gi",
-  #     #     "pods"            = "15",
-  #     #     "secrets"         = "10",
-  #     #     "services"        = "10"
-  #     #   }
-
-  #     #   # Manifests that can be automatically applied in the team-riker namespace.
-  #     #   manifests_dir = "./kubernetes/team-ksp"
-
-  #     users = [data.aws_caller_identity.current.arn]
-  #   }
-  # }
-
 }
