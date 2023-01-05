@@ -21,7 +21,7 @@ provider "kubectl" {
 }
 
 module "eks_blueprints" {
-  source = "github.com/aws-ia/terraform-aws-eks-blueprints?ref=v4.20.0"
+  source = "github.com/krishanshamod/terraform-aws-eks-blueprints"
 
   cluster_name = local.name
 
@@ -40,9 +40,24 @@ module "eks_blueprints" {
       subnet_ids      = module.vpc.private_subnets
 
       # Scaling Config
-      desired_size = 2
+      desired_size = 3
       max_size     = 3
       min_size     = 1
+    }
+  }
+
+  platform_teams = {
+    admin = {
+      users = [
+        data.aws_caller_identity.current.arn,
+        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/k8s-admin"
+      ]
+    }
+  }
+
+  application_teams = {
+    developer = {
+      users = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/k8s-dev"]
     }
   }
 
