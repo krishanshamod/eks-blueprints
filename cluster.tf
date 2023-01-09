@@ -56,7 +56,7 @@ module "eks_blueprints" {
   }
 
   application_teams = {
-    developer = {
+    team-riker = {
       users = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/k8s-dev"]
     }
   }
