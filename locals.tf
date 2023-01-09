@@ -9,4 +9,17 @@ locals {
 
   node_group_name = "managed-ondemand"
 
+  # ArgoCD addons applications 
+  addon_application = {
+    path               = "chart"
+    repo_url           = "https://github.com/krishanshamod/eks-blueprints-add-ons.git"
+    add_on_application = true
+  }
+
+  # ArgoCD workload application
+  workload_application = {
+    path               = "envs/dev"
+    repo_url           = "https://github.com/krishanshamod/eks-blueprints-workloads.git"
+    add_on_application = false
+  }
 }
