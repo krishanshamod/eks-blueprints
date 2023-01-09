@@ -34,14 +34,14 @@ module "eks_blueprints" {
 
   # EKS MANAGED NODE GROUPS
   managed_node_groups = {
-    mg_t3 = {
+    mg_m5_large = {
       node_group_name = local.node_group_name
-      instance_types  = ["t3.micro"]
+      instance_types  = ["m5.large"]
       subnet_ids      = module.vpc.private_subnets
 
       # Scaling Config
       desired_size = 3
-      max_size     = 3
+      max_size     = 4
       min_size     = 1
     }
   }
