@@ -12,15 +12,6 @@ module "kubernetes_addons" {
     #workloads = local.workload_application 
   }
 
-  argocd_helm_config = {
-    set = [
-      {
-        name  = "server.service.type"
-        value = "LoadBalancer"
-      }
-    ]
-  }
-
   # Extra addons
   # https://aws-ia.github.io/terraform-aws-eks-blueprints/add-ons/
 
@@ -30,8 +21,6 @@ module "kubernetes_addons" {
   enable_aws_for_fluentbit             = true
   enable_metrics_server                = true
   enable_kubecost                      = true
-  enable_ingress_nginx                 = true
-
 }
 
 
