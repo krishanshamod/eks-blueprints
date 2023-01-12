@@ -9,7 +9,7 @@ module "kubernetes_addons" {
 
   argocd_applications = {
     addons = local.addon_application
-    #workloads = local.workload_application 
+    workloads = local.workload_application 
   }
 
   # Extra addons

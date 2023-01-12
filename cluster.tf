@@ -40,7 +40,7 @@ module "eks_blueprints" {
       subnet_ids      = module.vpc.private_subnets
 
       # Scaling Config
-      desired_size = 3
+      desired_size = 2
       max_size     = 4
       min_size     = 1
     }

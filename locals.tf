@@ -18,7 +18,7 @@ locals {
 
   # ArgoCD workload application
   workload_application = {
-    path               = "envs/dev"
+    path               = "envs/prod"
     repo_url           = "https://github.com/krishanshamod/eks-blueprints-workloads.git"
     add_on_application = false
   }
