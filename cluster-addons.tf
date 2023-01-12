@@ -8,8 +8,8 @@ module "kubernetes_addons" {
   argocd_manage_add_ons = true
 
   argocd_applications = {
-    addons = local.addon_application
-    workloads = local.workload_application 
+    addons    = local.addon_application
+    workloads = local.workload_application
   }
 
   # Extra addons
@@ -21,6 +21,7 @@ module "kubernetes_addons" {
   enable_metrics_server                = true
   enable_kubecost                      = true
   enable_ingress_nginx                 = true
+  enable_cert_manager                  = true
 }
 
 
