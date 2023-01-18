@@ -21,5 +21,13 @@ locals {
     path               = "envs/prod"
     repo_url           = "https://github.com/krishanshamod/eks-blueprints-workloads.git"
     add_on_application = false
+
+    values = {
+      spec = {
+        clusterName              = local.name
+        karpenterInstanceProfile = "${local.name}-${local.node_group_name}"
+      }
+    }
   }
+
 }
