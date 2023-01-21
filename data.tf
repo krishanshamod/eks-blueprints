@@ -18,3 +18,8 @@ data "aws_eks_cluster" "cluster" {
 data "aws_eks_cluster_auth" "this" {
   name = module.eks_blueprints.eks_cluster_id
 }
+
+# Get the Karpenter queue ARN
+data "aws_arn" "queue" {
+  arn = module.karpenter.queue_arn
+}

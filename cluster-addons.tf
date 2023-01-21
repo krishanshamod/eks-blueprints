@@ -25,7 +25,7 @@ module "kubernetes_addons" {
   enable_karpenter = true
 
   karpenter_helm_config = {
-    awsInterruptionQueueName  = module.karpenter.queue_arn
+    awsInterruptionQueueName  = data.aws_arn.queue.resource
     awsDefaultInstanceProfile = "${local.name}-${local.node_group_name}"
   }
 
